@@ -1,9 +1,12 @@
 name: GitHub Actions Exercise 
 run-name: ${{ github.actor }} LinkedList Test Suite 
 on: [push]
-jobs:
-  LabPipeline:
-    runs-on: ubuntu-latest
+
+
+jobs: 
+  LabPipeline: runs-on: ${{ matrix.os }} strategy:
+    matrix: 
+      os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - run: echo "[Triggering Source] ${{ github.event_name }}."
 

@@ -4,27 +4,31 @@ on: [push]
 
 
 jobs: 
-  LabPipeline: runs-on: ${{ matrix.os }} strategy:
+  LabPipeline:
+    runs-on: ${{ matrix.os }} 
+  
+  strategy:
     matrix: 
       os: [ubuntu-latest, windows-latest, macos-latest]
-    steps:
-      - run: echo "[Triggering Source] ${{ github.event_name }}."
+  
+  steps:
+    - run: echo "[Triggering Source] ${{ github.event_name }}."
 
-      - run: echo "This job is now running on a ${{ runner.os }} server!"
+    - run: echo "This job is now running on a ${{ runner.os }} server!"
 
-      - name: Check out repository code
-        uses: actions/checkout@v3
+    - name: Check out repository code
+      uses: actions/checkout@v3
 
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
+    - name: List files in the repository
+      run: |
+        ls ${{ github.workspace }}
 
-      - name: Setting Up Python
-        uses: actions/setup-python/@v3
-        with:
-          python-version: 3.7
+    - name: Setting Up Python
+      uses: actions/setup-python/@v3
+      with:
+        python-version: 3.7
 
-      - name: Run Test Suite
-        run: python -m unittest discover testes/
+    - name: Run Test Suite
+      run: python -m unittest discover testes/
 
-      - run: echo "[Job Status] ${{ job.status }}."
+    - run: echo "[Job Status] ${{ job.status }}."

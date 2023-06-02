@@ -21,5 +21,4 @@ jobs:
         with:
           python-version: 3.7
 
-      - name: Run Test Suite
       - run: echo "[Job Status] ${{ job.status }}."

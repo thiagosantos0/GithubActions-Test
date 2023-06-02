@@ -7,37 +7,37 @@ jobs:
   LabPipeline:
     runs-on: ${{ matrix.os }} 
   
-  strategy:
-    matrix: 
-      os: [ubuntu-latest, windows-latest, macos-latest]
-  
-  steps:
-    - run: | 
-        if [ "$RUNNER_OS" == "Linux" ]; then
-          echo "[Triggering Source] ${{ github.event_name }}.";
-        fi 
+    strategy:
+      matrix: 
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    
+    steps:
+      - run: | 
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            echo "[Triggering Source] ${{ github.event_name }}.";
+          fi 
 
-    - run: | 
-        if [ "$RUNNER_OS" == "Linux" ]; then
-          echo "This job is now running on a ${{ runner.os }} server!";
-        fi 
+      - run: | 
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            echo "This job is now running on a ${{ runner.os }} server!";
+          fi 
 
-    - name: Check out repository code
-      uses: actions/checkout@v3
+      - name: Check out repository code
+        uses: actions/checkout@v3
 
-    - name: List files in the repository
-      run: |
-        ls ${{ github.workspace }}
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
 
-    - name: Setting Up Python
-      uses: actions/setup-python/@v3
-      with:
-        python-version: 3.7
+      - name: Setting Up Python
+        uses: actions/setup-python/@v3
+        with:
+          python-version: 3.7
 
-    - name: Run Test Suite
-      run: python -m unittest discover testes/
+      - name: Run Test Suite
+        run: python -m unittest discover testes/
 
-    - run: | 
-        if [ "$RUNNER_OS" == "Linux" ]; then
-          echo "[Job Status] ${{ job.status }}.";
-        fi 
+      - run: | 
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            echo "[Job Status] ${{ job.status }}.";
+          fi 

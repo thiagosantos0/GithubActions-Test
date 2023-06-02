@@ -17,11 +17,11 @@ jobs:
           ls ${{ github.workspace }}
 
       - name: Setting Up Python
-        uses: actions/setup-python/@v2
+        uses: actions/setup-python/@v3
         with:
           python-version: 3.7
 
       - name: Run Test Suite
-        run: python -m unittest discover testesUnidade/
-        
+        run: python -m unittest discover testes/
+
       - run: echo "[Job Status] ${{ job.status }}."

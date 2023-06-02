@@ -85,9 +85,19 @@ class LinkedList:
             prev = temp
             temp = temp.next
         
+        if(not temp):
+            return
+
         prev.next = temp.next
         return temp.data
-        
+    
+    def getListValues(self):
+        list_values = []
+        temp = self.head
+        while(temp):
+            list_values.append(temp.data)
+            temp = temp.next
+        return list_values
 
     def printList(self):
         temp = self.head

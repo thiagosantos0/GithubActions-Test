@@ -16,11 +16,13 @@ jobs:
           if [ "$RUNNER_OS" == "Linux" ]; then
             echo "[Triggering Source] ${{ github.event_name }}.";
           fi 
+        shell: bash
 
       - run: | 
           if [ "$RUNNER_OS" == "Linux" ]; then
             echo "This job is now running on a ${{ runner.os }} server!";
           fi 
+        shell: bash
 
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -40,4 +42,5 @@ jobs:
       - run: | 
           if [ "$RUNNER_OS" == "Linux" ]; then
             echo "[Job Status] ${{ job.status }}.";
-          fi 
+          fi
+        shell: bash

@@ -12,9 +12,15 @@ jobs:
       os: [ubuntu-latest, windows-latest, macos-latest]
   
   steps:
-    - run: echo "[Triggering Source] ${{ github.event_name }}."
+    - run: | 
+        if [ "$RUNNER_OS" == "Linux" ]; then
+          echo "[Triggering Source] ${{ github.event_name }}.";
+        fi 
 
-    - run: echo "This job is now running on a ${{ runner.os }} server!"
+    - run: | 
+        if [ "$RUNNER_OS" == "Linux" ]; then
+          echo "This job is now running on a ${{ runner.os }} server!";
+        fi 
 
     - name: Check out repository code
       uses: actions/checkout@v3
@@ -31,4 +37,7 @@ jobs:
     - name: Run Test Suite
       run: python -m unittest discover testes/
 
-    - run: echo "[Job Status] ${{ job.status }}."
+    - run: | 
+        if [ "$RUNNER_OS" == "Linux" ]; then
+          echo "[Job Status] ${{ job.status }}.";
+        fi 
